@@ -1,23 +1,30 @@
+var Promise = require('bluebird');
 
 module.exports = {
   solve: function(){
-   
-    const { spawn } = require('child_process');
-    const ls = spawn('minizinc', ['knapsack.mzn', 'knapsack0.dzn']);
 
-    //const ls = spawn('pwd', []);
+    return new Promise( function(resolve, reject){
+      const { spawn } = require('child_process');
+      const minizinc = spawn('minizinc', ['knapsack.mzn', 'knapsack0.dzn']);
 
-    ls.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
-    });
+      minizinc.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+        console.log("hello world1");
+        return resolve(`${data}`);
+      });
 
-    ls.stderr.on('data', (data) => {
-      console.log(`stderr: ${data}`);
-    });
+      minizinc.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+        console.log("hello world2");
+        return reject(`${data}`);
+      });
 
-    ls.on('close', (code) => {
-      console.log(`child process exited with code ${code}`);
-    });
+      minizinc.on('close', (code) => {
+        console.log(`child process exited with code ${code}`);
+      });
+      //console.log("hello world");
+      //return resolve("stdout: x = [1, 1, 1]");
+    }); 
   }
 }
 
