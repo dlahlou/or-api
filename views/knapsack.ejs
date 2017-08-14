@@ -10,11 +10,24 @@
   }, 0);
 </script>
 
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+
 <div class="default-page">
   <div class="header">
     <h3 class="container">You're looking at: <code><%= view.pathFromApp + '.' +view.ext %></code></h3>
   </div>
   <div class="main container clearfix">
     <h1>This is the knapsack page!</h1>
+    <% if (typeof data !== 'undefined') { %>
+      <pre><code>
+        <%- data %>
+      </code></pre>
+      <% } else { %>
+        <p>
+            A team of highly trained sea bass is working on this as we speak.<br/>
+            If the problem persists, please <a href="mailto:lahlou.driss10@gmail.com">contact the system administrator</a> and inform them of the time that the error occured, and anything you might have done that may have caused the error.
+        </p>
+    <% } %>
   </div>
 </div>

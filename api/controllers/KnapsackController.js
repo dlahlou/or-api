@@ -5,10 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-var Promise= require('promise');
-
 module.exports = {
-
 
   /**
    * `KnapsackController.callKnapsack()`
@@ -16,9 +13,10 @@ module.exports = {
 
 
   callKnapsack: function (req, res) {
-    knapsackService.solve().then(function(results){
-    	console.log(`stdout: results`);
-    	return res.json({"results": results});
+    knapsackService.solve().then(results => {
+    	res.ok({"results": results}, "knapsack.ejs");
+    }).catch(error => {
+        res.serverError({"error": error});
     });
   }
 };
