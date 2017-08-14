@@ -71,6 +71,10 @@ config/connections.js
 node_modules
 bower_components
 
+assets/bower/
+assets/js/dependencies/bower_dependencies/
+assets/styles/bower_styles/
+
 
 
 
